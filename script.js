@@ -9,7 +9,10 @@ document.addEventListener("keypress", function (e) {
 
     parent = document.querySelector(".game")
     if (e.key == parent.firstChild.textContent) {
-        document.querySelector(".game_score").innerHTML = parseInt(document.querySelector(".game_score").innerHTML) + 10 * (Math.ceil(Math.min(1, document.querySelector(".game").firstChild.dataset.top / 75) * 10) / 10)
+        let top_percentage = document.querySelector(".game").firstChild.dataset.top
+        var points = 10
+        let effective_points = Math.ceil((top_percentage > 75) ? points * (100 - top_percentage) / 25 : points);
+        document.querySelector(".game_score").innerHTML = parseInt(document.querySelector(".game_score").innerHTML) + effective_points
         parent.removeChild(parent.firstChild)
     }
 })
