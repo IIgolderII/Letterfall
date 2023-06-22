@@ -17,9 +17,12 @@ img.fond {
     height: 100%;
     object-fit: cover;
     object-position: center center;
-    animation: fond_in 2s ease-in-out forwards;
     pointer-events: none;
     user-select: none;
+}
+
+body.play img.fond {
+    animation: fond_in 1s ease-in-out forwards;
 }
 
 @keyframes fond_in {
@@ -48,19 +51,19 @@ img.fond {
     transition: all .6s ease-in-out;
     position: absolute;
     left: 45%;
-    top: 80%;
+    top: 75%;
     transform: translate(-50%, -50%);
     width: 60%;
     height: 8px;
     background-color: rgba(255, 255, 255, .6);
-    outline: solid 0px rgba(255, 255, 255, .6);
+    outline: solid 0px rgba(255, 255, 255, .4);
     border-radius: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.horizontal_bar.start {
+body:not(.play) .horizontal_bar {
     left: 50%;
     top: 66%;
     width: 500px;
@@ -69,7 +72,7 @@ img.fond {
     user-select: none;
 }
 
-.horizontal_bar.start:hover {
+body:not(.play) .horizontal_bar:hover {
     animation: horizontal_bar_hover .6s ease-out forwards;
 }
 
@@ -88,7 +91,7 @@ img.fond {
     user-select: none;
 }
 
-.horizontal_bar:not(.start) .start_text {
+body.play .horizontal_bar .start_text {
     opacity: 0;
 }
 
@@ -102,8 +105,9 @@ img.fond {
     top: 0;
     transform: translateX(-50%);
     width: 60%;
-    height: 100%;
+    height: calc(100% - 48px);
     pointer-events: none;
+    user-select: none;
 }
 
 .game span.letter {
@@ -112,6 +116,25 @@ img.fond {
     font-size: 48px;
     font-weight: bold;
     color: rgba(255, 255, 255, .8);
+}
+
+
+
+/* score */
+
+span.game_score {
+    transition: all 1s .5s ease-in-out;
+    position: absolute;
+    top: 10%;
+    left: 45%;
+    transform: translateX(-50%);
+    font-size: 10rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, .2);
+}
+
+body:not(.play) span.game_score {
+    opacity: 0;
 }
 
 
